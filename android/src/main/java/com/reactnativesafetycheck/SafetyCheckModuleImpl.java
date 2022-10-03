@@ -34,6 +34,10 @@ public class SafetyCheckModuleImpl {
   public static boolean isRooted(Context context) {
     RootBeer rootBeer = new RootBeer(context);
 
+    if (isEmulator()) {
+      return false;
+    }
+
     return rootBeer.isRooted();
   }
 

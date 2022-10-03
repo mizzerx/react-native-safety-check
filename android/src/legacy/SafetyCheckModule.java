@@ -25,7 +25,7 @@ public class SafetyCheckModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void check(Callback callback) {
     callback.invoke(
-        SafetyCheckModuleImpl.isEmulator(), SafetyCheckModuleImpl.isRooted(reactContext));
+        SafetyCheckModuleImpl.isRooted(reactContext), SafetyCheckModuleImpl.isEmulator());
   }
 
   @ReactMethod
