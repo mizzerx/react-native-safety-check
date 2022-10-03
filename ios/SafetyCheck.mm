@@ -7,22 +7,26 @@
 @implementation SafetyCheck
 RCT_EXPORT_MODULE()
 
-// Example method
-// See // https://reactnative.dev/docs/native-modules-ios
-RCT_REMAP_METHOD(multiply,
-                 multiplyWithA:(double)a withB:(double)b
-                 withResolver:(RCTPromiseResolveBlock)resolve
-                 withRejecter:(RCTPromiseRejectBlock)reject)
+RCT_EXPORT_METHOD(check:(RCTResponseSenderBlock)callback)
 {
-  NSNumber *result = @(a * b);
+    JailBreakHelper *jailBreakHelper = [[JailBreakHelper alloc] init];
+    bool isJailBroken = [jailBreakHelper isJailBroken];
+    bool isSimulator = [jailBreakHelper isSimulator];
 
-  resolve(result);
+    callback(@[@(isJailBroken), @(isSimulator)]);
+}
+
+RCT_EXPORT_METHOD(closeApp:(int)timeOut)
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(timeOut * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        exit(0);
+    });
 }
 
 // Don't compile this code when we build for the old architecture.
 #ifdef RCT_NEW_ARCH_ENABLED
 - (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
-    (const facebook::react::ObjCTurboModule::InitParams &)params
+(const facebook::react::ObjCTurboModule::InitParams &)params
 {
     return std::make_shared<facebook::react::NativeSafetyCheckSpecJSI>(params);
 }

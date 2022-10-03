@@ -1,4 +1,5 @@
 import { NativeModules, Platform } from 'react-native';
+import type { CheckCallback } from './types';
 
 const LINKING_ERROR =
   `The package 'react-native-safety-check' doesn't seem to be linked. Make sure: \n\n` +
@@ -24,6 +25,12 @@ const SafetyCheck = SafetyCheckModule
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
-  return SafetyCheck.multiply(a, b);
+export function check(callback: CheckCallback): void {
+  return SafetyCheck.check(callback);
 }
+
+export function closeApp(timeOut = 0): void {
+  return SafetyCheck.closeApp(timeOut);
+}
+
+export * from './types';

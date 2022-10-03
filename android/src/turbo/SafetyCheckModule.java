@@ -7,9 +7,11 @@ import com.facebook.react.bridge.ReactMethod;
 
 public class SafetyCheckModule extends NativeSafetyCheckSpec {
   public static final String NAME = SafetyCheckModuleImpl.NAME;
+  private final ReactApplicationContext reactContext;
 
   SafetyCheckModule(ReactApplicationContext context) {
     super(context);
+    this.reactContext = context;
   }
 
   @Override
@@ -18,11 +20,16 @@ public class SafetyCheckModule extends NativeSafetyCheckSpec {
     return SafetyCheckModuleImpl.NAME;
   }
 
-  // Example method
-  // See https://reactnative.dev/docs/native-modules-android
   @Override
   @ReactMethod
-  public void multiply(double a, double b, Promise promise) {
-    SafetyCheckModuleImpl.multiply(a, b, promise);
+  public void check(Callback callback) {
+    callback.invoke(
+      SafetyCheckModuleImpl.isEmulator(), SafetyCheckModuleImpl.isRooted(reactContext));
+  }
+
+  @Override
+  @ReactMethod
+  public void closeApp(int timeOut) {
+    SafetyCheckModuleImpl.closeApp(timeOut);
   }
 }

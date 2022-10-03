@@ -3,12 +3,8 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 54;
 	objects = {
-
-/* Begin PBXBuildFile section */
-		5E555C0D2413F4C50049A1A2 /* SafetyCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = B3E7B5891CC2AC0600A0062D /* SafetyCheck.m */; };
-/* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		58B511D91A9E6C8500147676 /* CopyFiles */ = {
@@ -24,8 +20,10 @@
 
 /* Begin PBXFileReference section */
 		134814201AA4EA6300B7C361 /* libSafetyCheck.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libSafetyCheck.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D25947928E9DD34009660C8 /* SafetyCheck.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SafetyCheck.mm; sourceTree = "<group>"; };
+		5D25947A28E9E048009660C8 /* JailBreakHelper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = JailBreakHelper.mm; sourceTree = "<group>"; };
+		5D25947B28E9E23F009660C8 /* JailBreakHelper.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JailBreakHelper.h; sourceTree = "<group>"; };
 		B3E7B5881CC2AC0600A0062D /* SafetyCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SafetyCheck.h; sourceTree = "<group>"; };
-		B3E7B5891CC2AC0600A0062D /* SafetyCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SafetyCheck.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -50,8 +48,10 @@
 		58B511D21A9E6C8500147676 = {
 			isa = PBXGroup;
 			children = (
+				5D25947B28E9E23F009660C8 /* JailBreakHelper.h */,
+				5D25947A28E9E048009660C8 /* JailBreakHelper.mm */,
 				B3E7B5881CC2AC0600A0062D /* SafetyCheck.h */,
-				B3E7B5891CC2AC0600A0062D /* SafetyCheck.m */,
+				5D25947928E9DD34009660C8 /* SafetyCheck.mm */,
 				134814211AA4EA7D00B7C361 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -91,7 +91,7 @@
 				};
 			};
 			buildConfigurationList = 58B511D61A9E6C8500147676 /* Build configuration list for PBXProject "SafetyCheck" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 12.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -113,7 +113,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B3E7B58A1CC2AC0600A0062D /* SafetyCheck.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

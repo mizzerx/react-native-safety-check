@@ -1,8 +1,6 @@
-import type { TurboModule } from 'react-native';
 import { TurboModuleRegistry } from 'react-native';
+import type { NativeSafetyCheckSpec } from './types';
 
-export interface Spec extends TurboModule {
-  multiply(a: number, b: number): Promise<number>;
-}
-
-export default TurboModuleRegistry.getEnforcing<Spec>('SafetyCheck');
+export default TurboModuleRegistry.getEnforcing<NativeSafetyCheckSpec>(
+  'SafetyCheck'
+);
