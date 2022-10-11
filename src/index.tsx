@@ -1,5 +1,4 @@
 import { NativeModules, Platform } from 'react-native';
-import type { CheckCallback } from './types';
 
 const LINKING_ERROR =
   `The package 'react-native-safety-check' doesn't seem to be linked. Make sure: \n\n` +
@@ -14,7 +13,7 @@ const SafetyCheckModule = isTurboModuleEnabled
   ? require('./NativeSafetyCheck').default
   : NativeModules.SafetyCheck;
 
-const SafetyCheck = SafetyCheckModule
+const RTNSafetyCheck = SafetyCheckModule
   ? SafetyCheckModule
   : new Proxy(
       {},
@@ -25,12 +24,12 @@ const SafetyCheck = SafetyCheckModule
       }
     );
 
-export function check(callback: CheckCallback): void {
-  return SafetyCheck.check(callback);
+export function check(
+  callback: (isSafe: boolean, isVirtualDevice: boolean) => void
+): void {
+  return RTNSafetyCheck.check(callback);
 }
 
 export function closeApp(timeOut = 0): void {
-  return SafetyCheck.closeApp(timeOut);
+  return RTNSafetyCheck.closeApp(timeOut);
 }
-
-export * from './types';

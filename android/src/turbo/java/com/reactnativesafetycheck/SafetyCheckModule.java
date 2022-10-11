@@ -1,13 +1,11 @@
 package com.reactnativesafetycheck;
 
 import androidx.annotation.NonNull;
-
 import com.facebook.react.bridge.Callback;
 import com.facebook.react.bridge.ReactApplicationContext;
-import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 
-public class SafetyCheckModule extends ReactContextBaseJavaModule {
+public class SafetyCheckModule extends NativeSafetyCheckSpec {
   public static final String NAME = SafetyCheckModuleImpl.NAME;
   private final ReactApplicationContext reactContext;
 
@@ -22,14 +20,13 @@ public class SafetyCheckModule extends ReactContextBaseJavaModule {
     return SafetyCheckModuleImpl.NAME;
   }
 
-  @ReactMethod
+  @Override
   public void check(Callback callback) {
-    callback.invoke(
-        SafetyCheckModuleImpl.isRooted(reactContext), SafetyCheckModuleImpl.isEmulator());
+    SafetyCheckModuleImpl.check(reactContext, callback);
   }
 
-  @ReactMethod
-  public void closeApp(int timeOut) {
+  @Override
+  public void closeApp(double timeOut) {
     SafetyCheckModuleImpl.closeApp(timeOut);
   }
 }

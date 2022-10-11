@@ -1,18 +1,23 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply } from 'react-native-safety-check';
+import { StyleSheet, Text, View } from 'react-native';
+import { check } from 'react-native-safety-check';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const [safe, setSafe] = React.useState<boolean>(false);
+  const [virtual, setVirtual] = React.useState<boolean>(false);
 
   React.useEffect(() => {
-    multiply(3, 7).then(setResult);
-  }, []);
+    check((isSafe, isVirtualDevice) => {
+      setSafe(isSafe);
+      setVirtual(isVirtualDevice);
+    });
+  }, [safe]);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>IsSafe: {safe ? 'true' : 'false'}</Text>
+      <Text>IsVirtualDevice: {virtual}</Text>
     </View>
   );
 }

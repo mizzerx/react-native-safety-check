@@ -13,7 +13,7 @@ RCT_EXPORT_METHOD(check:(RCTResponseSenderBlock)callback)
     bool isJailBroken = [jailBreakHelper isJailBroken];
     bool isSimulator = [jailBreakHelper isSimulator];
 
-    callback(@[@(isJailBroken), @(isSimulator)]);
+    callback(@[@(!isJailBroken), @(isSimulator)]);
 }
 
 RCT_EXPORT_METHOD(closeApp:(int)timeOut)
